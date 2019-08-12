@@ -6,5 +6,6 @@ import (
 
 func InitRouters() *mux.Router {
 	router := mux.NewRouter().StrictSlash(false)
+	router = SetTaskRouters(router)
 	return router
 }

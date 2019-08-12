@@ -15,6 +15,6 @@ func main() {
 	m := negroni.Classic()
 	m.UseHandler(r)
 
-	log.Println("Listening...")
-	http.ListenAndServe(":8080", m)
+	log.Println("Listening 8701...")
+	http.ListenAndServe(":8701", m)
 }

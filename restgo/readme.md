@@ -8,3 +8,6 @@ https://github.com/gorilla/mux
 
 https://www.gorillatoolkit.org/pkg/mux
 go get -u github.com/gorilla/mux
+
+Mongo
+go get gopkg.in/mgo.v2
