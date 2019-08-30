@@ -33,3 +33,14 @@ Mostra qual banco de dados está sendo usado. Se você acabou de instalar o Mong
 
 use nomeBD
 Este comando acessa um determinado banco de dados, quando ele existe. Se o banco não existe ele é criado automaticamente.
+
+mongo
+é o cliente
+
+show collections
+
+db.customers.find()
+
+db.customers.insert({ nome: "Luiz", idade: 29 })
+
+
