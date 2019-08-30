@@ -1,17 +1,18 @@
 package common
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 )
 
 type appErr struct {
-	Error string `json:"error"`
-	Status string `json:"status"`
+	Error  string `json:"error"`
+	Status int    `json:"status"`
 }
 
-func JsonError(w http.ResponseWriter, handleErr error, code int) {
-	log.Print("Error: %s\n", handleErr)
+func JsonError(w http.ResponseWriter, handlerErr error, code int) {
+	log.Print("Error: %s\n", handlerErr)
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(code)
 	if res, err := json.Marshal(&appErr{handlerErr.Error(), code}); err == nil {
@@ -20,7 +21,7 @@ func JsonError(w http.ResponseWriter, handleErr error, code int) {
 }
 
 func JsonOk(w http.ResponseWriter, res []byte, code int) {
-	log.Print("Error: %s\n", handleErr)
+
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(code)
 	w.Write(res)
