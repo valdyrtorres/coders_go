@@ -8,7 +8,8 @@ import (
 )
 
 type Task struct {
-	ID   bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	//ID   bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	ID   bson.ObjectId `bson:"_id" json:"id"`
 	Name string        `bson:"name" json:"name"`
 	Desc string        `bson:"desc" json:"desc"`
 }
@@ -42,12 +43,15 @@ func (tasks) Create(name, desc string) (*Task, error) {
 }
 
 func (tasks) Update(id, name, desc string) error {
-	print(id)
+	println("id:" + id)
+	println("nome:" + name)
+	println("descricao:" + desc)
 	if err := common.DB.Tasks.UpdateId(bson.IsObjectIdHex(id),
 		bson.M{"$set": bson.M{
 			"name": name,
 			"desc": desc,
 		}}); err != nil {
+		println("Erro:" + err.Error())
 		return err
 	}
 

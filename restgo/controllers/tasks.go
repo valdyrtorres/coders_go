@@ -4,10 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"log"
+
 	"../common"
 	"../models"
+	"github.com/gorilla/mux"
 )
 
 var Tasks = new(tasksController)
@@ -73,12 +74,14 @@ func (tc *tasksController) Update(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 
 	var t models.Task
+	// verifica a consistencia do request
 	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
 		common.JsonError(w, err, http.StatusBadRequest)
 		log.Println("ERRO1===>" + err.Error())
 		return
 	}
 
+	// faz o update propriamente dito
 	if err := models.Tasks.Update(id, t.Name, t.Desc); err != nil {
 		common.JsonError(w, err, http.StatusBadRequest)
 		log.Println("ERRO2===>" + err.Error())

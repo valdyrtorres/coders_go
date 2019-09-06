@@ -51,7 +51,8 @@ Criar:
 curl -v -X POST -d {\"name\":\"Rico\"} http://127.0.0.1:8701/tasks
 
 Update
-curl -v -X PUT -d {\"name\":\"Rico Torres\"} http://127.0.0.1:8701/tasks/5d6e9c1487cb4f2870c1b7d9
+curl -v -X PUT -d {\"name\":\"RicoTorres\"} http://127.0.0.1:8701/tasks/5d6e9c1487cb4f2870c1b7d9
+curl -v -X PUT -d {\"name\":\"Rico%20Torres\"} http://127.0.0.1:8701/tasks/5d6e9c1487cb4f2870c1b7d9
 
 Delete
 curl -v -X DELETE http://127.0.0.1:8701/tasks/5d6e9c1487cb4f2870c1b7d9
