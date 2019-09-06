@@ -1,12 +1,14 @@
 package models
 
 import (
+	"log"
+
 	"../common"
 	"gopkg.in/mgo.v2/bson"
 )
 
 type Task struct {
-	ID   bson.ObjectId `bson:"_id,onitempty" json:"id"`
+	ID   bson.ObjectId `bson:"_id,omitempty" json:"id"`
 	Name string        `bson:"name" json:"name"`
 	Desc string        `bson:"desc" json:"desc"`
 }
@@ -17,6 +19,7 @@ type tasks struct{}
 
 func (tasks) FindAll() ([]*Task, error) {
 	var ts []*Task
+	log.Println("PASSEI")
 	return ts, common.DB.Tasks.Find(nil).All(&ts)
 }
 
@@ -32,12 +35,14 @@ func (tasks) Create(name, desc string) (*Task, error) {
 		Desc: desc,
 	}
 	if err := common.DB.Tasks.Insert(t); err != nil {
+		log.Println("ERRO===>" + err.Error())
 		return nil, err
 	}
 	return t, nil
 }
 
 func (tasks) Update(id, name, desc string) error {
+	print(id)
 	if err := common.DB.Tasks.UpdateId(bson.IsObjectIdHex(id),
 		bson.M{"$set": bson.M{
 			"name": name,
