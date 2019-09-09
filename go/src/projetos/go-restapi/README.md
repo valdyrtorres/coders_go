@@ -9,6 +9,29 @@ mongod –-dbpath=C:\data\db
 
 ex: mongod --dbpath=C:\valdir\private\coders_go\restgo\data\db 
 
+Comandos uteis
+
+db.help()
+Lista todos os comandos que podem ser aplicados no banco de dados e contém também  uma explicação (guarde este comando no coração);
+
+show dbs
+Mostra todos os bancos de dados existentes no servidor.
+
+db
+Mostra qual banco de dados está sendo usado. Se você acabou de instalar o MongoDB, e executar este comando verá que o banco de dados usado é o test, banco de dados default e para testes do MongoDB
+
+use nomeBD
+Este comando acessa um determinado banco de dados, quando ele existe. Se o banco não existe ele é criado automaticamente.
+
+mongo
+é o cliente
+
+show collections
+
+db.customers.find()
+
+db.customers.insert({ nome: "Luiz", idade: 29 })
+
 GOPATH:
 C:\valdir\private\coders_go\go\src\projetos\go-restapi>set gopath
 GOPATH=C:\valdir\private\coders_go\go
@@ -16,7 +39,7 @@ GOPATH=C:\valdir\private\coders_go\go
 TESTANDO:
 go run main.go no seu terminal, em seguida abra o endereço http://localhost:3000/api/v1/movies no seu navegador.
 
-Criar (POST): OK
+1) Criar (POST): OK
 http://localhost:3000/api/v1/movies
 {
   "name": "The Equalizer",
@@ -25,14 +48,14 @@ http://localhost:3000/api/v1/movies
   "active": true
 }
 
-GetAll (busca todos os registros) (get): OK
+2) GetAll (busca todos os registros) (get): OK
 http://localhost:3000/api/v1/movies
 
-GetById OK
+3) GetById OK
 http://localhost:3000/api/v1/movies/"id"
 Ex: http://localhost:3000/api/v1/movies/5d76578987cb4f4decacb8cd
 
-Update (PUT) OK
+4) Update (PUT) OK
 http://localhost:3000/api/v1/movies/5d7694eb87cb4f7cf0a0adb9
 {
   "id":"5d7694eb87cb4f7cf0a0adb9",
@@ -42,7 +65,22 @@ http://localhost:3000/api/v1/movies/5d7694eb87cb4f7cf0a0adb9
   "active": true
 }
 
-DELETE OK
+5) DELETE OK
 http://localhost:3000/api/v1/movies/"id"
 Ex: http://localhost:3000/api/v1/movies/5d76578987cb4f4decacb8cd
+
+TESTES COM O CURL:
+1)Consulta: OK
+curl -v -X GET http://localhost:3000/api/v1/movies    
+
+2)Criar: OK
+curl -v POST -d "{\"name\":\"Teste curl dois\", \"description\":\"descricao curl dois\", \"thumb_image\": \"http://t2.gstatic.com/images?q=tbn:ANd9GcQkGfxoavBEp4fR6P-yi2mIkUl1aZHHFIietLK4GriI5YyvGSJ7\", \"active\": true }" http://localhost:3000/api/v1/movies
+
+3)Update OK
+curl -v -X PUT -d "{\"id\":\"5d76a44887cb4f8b5cc4135e\",\"name\":\"Rico curl Torres\", \"description\":\"descricao update curl dois\", \"thumb_image\": \"http://t2.gstatic.com/images?q=tbn:ANd9GcQkGfxoavBEp4fR6P-yi2mIkUl1aZHHFIietLK4GriI5YyvGSJ7\", \"active\": true }" http://localhost:3000/api/v1/movies/5d76a44887cb4f8b5cc4135e
+
+Delete
+curl -v -X DELETE http://127.0.0.1:8701/tasks/5d6e9c1487cb4f2870c1b7d9
+
+
 
